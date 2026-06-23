@@ -1,162 +1,364 @@
-# 💳 Financial Fraud Detection System
+# 🛡️ Financial Fraud Detection System
 
-## 📌 Project Overview
+## 🌟 Overview
 
-The Financial Fraud Detection System is a Machine Learning-based application designed to identify fraudulent financial transactions and help organizations minimize financial losses. The project leverages data analytics, feature engineering, and classification algorithms to detect suspicious activities and provide actionable insights.
+The **Financial Fraud Detection System** is an end-to-end Machine Learning application designed to identify fraudulent financial transactions and assist financial institutions in minimizing losses caused by fraud.
 
-The system analyzes transaction patterns, account behaviors, and risk indicators to classify transactions as either legitimate or fraudulent.
+This project leverages data preprocessing, feature engineering, class balancing techniques, machine learning models, and an interactive Streamlit dashboard to analyze transaction behavior and predict whether a transaction is fraudulent or legitimate.
 
----
-
-# 🌐 Live Deployment
-
-### 🔗 Streamlit App
-
-https://financial-fraud-detection-zidio3.streamlit.app/
-
-### 🔗 GitHub Repository
-
-https://github.com/laharisetty29/Financial-Fraud-Detection
-
----
-## 🎯 Objectives
-
-* Detect fraudulent financial transactions using Machine Learning.
-* Analyze transaction patterns and fraud trends.
-* Identify high-risk transaction behaviors.
-* Provide real-time fraud prediction capabilities.
-* Support financial institutions in fraud prevention and risk management.
+The system provides real-time fraud prediction, risk scoring, transaction analytics, and model performance visualization through a user-friendly web interface.
 
 ---
 
-## 🛠️ Tech Stack
+## 🌐 Live Demo
 
-### Programming Language
+🚀 **Streamlit Application**
 
-* Python
+https://financial-fraud-detection-main-cqhnrfpa92d8m6wi3kpnyt.streamlit.app/
 
-### Data Analysis & Processing
+💻 **GitHub Profile**
 
-* Pandas
-* NumPy
-
-### Machine Learning
-
-* Scikit-learn
-* Random Forest Classifier
-
-### Data Visualization
-
-* Plotly
-* Matplotlib
-
-### Web Application
-
-* Streamlit
-
-### Model Storage
-
-* Joblib
-
-### Database
-
-* SQLite
+https://github.com/Dattuking
 
 ---
 
-## 📂 Project Structure
+# 🎯 Problem Statement
+
+Financial fraud is a major concern for banks, digital payment providers, and financial institutions worldwide.
+
+Challenges include:
+
+* Massive transaction volumes
+* Highly imbalanced fraud datasets
+* Evolving fraud patterns
+* Real-time fraud detection requirements
+* Reducing false alarms while maintaining high detection accuracy
+
+This project addresses these challenges using machine learning techniques and intelligent feature engineering to identify suspicious transactions effectively.
+
+---
+
+# 🏗️ System Workflow
 
 ```text
-Financial-Fraud-Detection/
-│
-├── models/
-│
-├── app.py
-├── train_model.py
-├── data_preprocessing.py
-├── fraud_data.db
-├── requirements.txt
-├── .gitignore
-└── README.md
+Raw Transaction Data
+          │
+          ▼
+Data Cleaning
+          │
+          ▼
+Feature Engineering
+          │
+          ▼
+Feature Scaling
+          │
+          ▼
+SMOTE Balancing
+          │
+          ▼
+Model Training
+(Logistic Regression,
+Gradient Boosting,
+XGBoost)
+          │
+          ▼
+Model Evaluation
+          │
+          ▼
+Best Model Selection
+          │
+          ▼
+Streamlit Dashboard
+          │
+          ▼
+Real-Time Fraud Prediction
 ```
 
 ---
 
-## 📊 Features
+# 📊 Dataset Description
 
-### Fraud Detection
+The dataset contains financial transaction records with information such as:
 
-* Predict fraudulent transactions using Machine Learning.
-* Risk scoring and fraud classification.
+* Transaction Amount
+* Transaction Type
+* Sender Balance
+* Receiver Balance
+* Transaction Time
+* Fraud Status
 
-### Transaction Analysis
+### Target Variable
 
-* Transaction amount analysis.
-* Account balance behavior tracking.
-* High-risk transaction identification.
+| Value | Meaning                |
+| ----- | ---------------------- |
+| 0     | Legitimate Transaction |
+| 1     | Fraudulent Transaction |
 
-### Data Processing
-
-* Data cleaning and preprocessing.
-* Feature engineering.
-* Handling missing values and outliers.
-
-### Model Evaluation
-
-* Accuracy Score
-* Precision
-* Recall
-* F1-Score
+Since fraudulent transactions represent only a small portion of all transactions, special preprocessing techniques are required to handle class imbalance.
 
 ---
 
-## 🤖 Machine Learning Workflow
+# 🧹 Data Preprocessing
 
-### 1. Data Preprocessing
+The preprocessing pipeline includes:
 
-* Data cleaning
-* Duplicate removal
-* Missing value handling
-* Feature transformation
+### Data Cleaning
 
-### 2. Feature Engineering
+* Handling missing values
+* Data validation
+* Feature selection
 
+### Feature Scaling
+
+Numerical features are standardized using:
+
+* StandardScaler
+
+### Class Balancing
+
+Fraud detection datasets are naturally imbalanced.
+
+To improve model performance:
+
+* SMOTE (Synthetic Minority Oversampling Technique)
+
+is applied to generate synthetic fraud samples and balance the dataset before training.
+
+---
+
+# ⚙️ Feature Engineering
+
+Several custom features were created to capture transaction behavior patterns.
+
+### Transaction Features
+
+* Transaction Amount
+* Transaction Hour
+* Weekend Transaction Indicator
+
+### Sender Features
+
+* Sender Balance Change
+* Sender Utilization Ratio
+* Sender Transaction Count
+
+### Receiver Features
+
+* Receiver Balance Change
+* Receiver Growth Ratio
+* Receiver Transaction Count
+
+### Risk Indicators
+
+* Large Transaction Flag
+* Account Drained Indicator
+* New Receiver Account Indicator
+* High Risk Transaction Type Indicator
+
+These engineered features significantly improve fraud detection capability.
+
+---
+
+# 🤖 Machine Learning Models
+
+The project evaluates multiple machine learning algorithms.
+
+## 1️⃣ Logistic Regression
+
+A simple and interpretable baseline classification model.
+
+### Advantages
+
+* Fast training
+* Easy interpretation
+* Good baseline performance
+
+---
+
+## 2️⃣ Gradient Boosting Classifier
+
+An ensemble learning algorithm that combines multiple weak learners.
+
+### Advantages
+
+* Strong predictive performance
+* Captures non-linear relationships
+* Robust against overfitting
+
+---
+
+## 3️⃣ XGBoost Classifier
+
+An advanced gradient boosting framework optimized for speed and accuracy.
+
+### Advantages
+
+* High accuracy
+* Efficient handling of large datasets
+* Excellent fraud detection performance
+
+---
+
+# 📈 Model Evaluation Metrics
+
+The models are evaluated using:
+
+| Metric    | Description                            |
+| --------- | -------------------------------------- |
+| Accuracy  | Overall prediction correctness         |
+| Precision | Measures false positives               |
+| Recall    | Measures fraud detection effectiveness |
+| F1 Score  | Balance between precision and recall   |
+| ROC-AUC   | Overall classification capability      |
+
+The best-performing model is automatically selected based on the highest F1 Score.
+
+---
+
+# 📊 Dashboard Features
+
+The Streamlit dashboard consists of four main modules.
+
+---
+
+## 📈 Overview Dashboard
+
+Provides a high-level summary of transaction statistics.
+
+### Visualizations
+
+* Fraud vs Legitimate Distribution
+* Fraud Rate Analysis
+* Transaction Amount Distribution
+* Fraud by Transaction Hour
+* Fraud by Transaction Type
+
+---
+
+## 🔍 Transaction Analysis
+
+Allows detailed exploration of transaction patterns.
+
+### Features
+
+* Filter transactions by type
+* Filter fraud and legitimate records
+* Amount range filtering
 * Transaction behavior analysis
-* Balance change calculations
-* Risk indicator generation
-
-### 3. Model Training
-
-* Train-Test Split
-* Random Forest Classifier
-* Model evaluation
-
-### 4. Fraud Prediction
-
-* Transaction classification
-* Fraud probability estimation
-* Risk assessment
+* Raw transaction inspection
 
 ---
 
-## 📈 Key Insights
+## 🤖 Model Performance Dashboard
 
-The system helps identify:
+Displays performance comparison across models.
 
-* Suspicious transaction patterns
-* High-risk account activities
-* Unusual balance changes
-* Potential fraudulent transactions
-* Fraud-prone transaction categories
+### Includes
+
+* Accuracy Comparison
+* Precision Comparison
+* Recall Comparison
+* F1 Score Comparison
+* ROC-AUC Comparison
+* Radar Charts
+* Confusion Matrices
 
 ---
 
-## 🚀 Installation
+## 🎯 Fraud Prediction Module
+
+Users can manually enter transaction details.
+
+The system returns:
+
+* Fraud Prediction
+* Fraud Probability
+* Risk Score
+* Fraud Risk Factors
+* Visual Risk Gauge
+
+---
+
+# 🔄 Prediction Process
+
+1. User enters transaction details.
+2. Features are generated automatically.
+3. Input data is standardized.
+4. Best trained model performs prediction.
+5. Fraud probability is calculated.
+6. Risk indicators are analyzed.
+7. Final fraud assessment is displayed.
+
+---
+
+# 🛠️ Technology Stack
+
+## Programming Language
+
+* Python
+
+## Data Processing
+
+* Pandas
+* NumPy
+
+## Machine Learning
+
+* Scikit-Learn
+* XGBoost
+* SMOTE
+
+## Visualization
+
+* Plotly
+* Plotly Express
+
+## Dashboard Development
+
+* Streamlit
+
+## Database
+
+* SQLite
+
+## Model Serialization
+
+* Joblib
+
+---
+
+# 📂 Project Structure
+
+```text
+Financial-Fraud-Detection/
+│
+├── app.py
+├── data_preprocessing.py
+├── train_model.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── models/
+│   ├── best_model.pkl
+│   ├── best_model_name.pkl
+│   ├── scaler.pkl
+│   ├── feature_cols.pkl
+│   ├── logistic_regression.pkl
+│   ├── gradient_boosting.pkl
+│   └── xgboost.pkl
+│
+└── fraud_data.db
+```
+
+---
+
+# 🚀 Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/laharisetty29/Financial-Fraud-Detection.git
+git clone https://github.com/Dattuking/Financial-Fraud-Detection.git
 cd Financial-Fraud-Detection
 ```
 
@@ -166,48 +368,98 @@ cd Financial-Fraud-Detection
 pip install -r requirements.txt
 ```
 
-### Train the Model
+### Run Data Preprocessing
+
+```bash
+python data_preprocessing.py
+```
+
+### Train Models
 
 ```bash
 python train_model.py
 ```
 
-### Run the Streamlit Application
+### Launch Application
 
 ```bash
-python -m streamlit run app.py
+streamlit run app.py
 ```
 
 ---
 
-## 📊 Future Enhancements
+# 📦 Required Libraries
 
-* Real-time fraud monitoring
-* Advanced anomaly detection
-* Deep Learning models
-* Fraud alert notification system
-* Cloud deployment
-* Interactive analytics dashboard
+```text
+pandas
+numpy
+scikit-learn
+xgboost
+imbalanced-learn
+streamlit
+plotly
+joblib
+```
 
 ---
 
-## 🎓 Learning Outcomes
+# 🔮 Future Enhancements
+
+* Deep Learning-Based Fraud Detection
+* Explainable AI (SHAP & LIME)
+* Real-Time Transaction Monitoring
+* Fraud Alert Notification System
+* REST API Development
+* AWS/Azure Cloud Deployment
+* Streaming Data Integration
+
+---
+
+# 🎓 Learning Outcomes
 
 Through this project, I gained hands-on experience in:
 
-* Data Cleaning & Preprocessing
+* Data Cleaning and Preprocessing
 * Feature Engineering
-* Machine Learning Model Development
 * Fraud Analytics
+* Handling Imbalanced Datasets
+* Machine Learning Model Development
+* Model Evaluation Techniques
 * Streamlit Application Development
-* Data Visualization
-* Model Deployment
+* Interactive Data Visualization
+* End-to-End ML Deployment
 
 ---
 
-## 👩‍💻 Author
+# 👨‍💻 Author
 
-**Lahari Gadamsetty**
+## Kona Venkata Datta Sai Krishna
 
-* GitHub: https://github.com/laharisetty29
-* LinkedIn: https://www.linkedin.com/in/laharigadamsetty
+🎓 B.Tech – Computer Science and Engineering (Artificial Intelligence)
+
+🏫 Amrita Vishwa Vidyapeetham, Amaravati
+
+📧 Email: [datthukona@gmail.com](mailto:datthukona@gmail.com)
+
+💻 GitHub: https://github.com/Dattuking
+
+🌐 Live Project:
+https://financial-fraud-detection-main-cqhnrfpa92d8m6wi3kpnyt.streamlit.app/
+
+---
+
+## ⭐ Support
+
+If you found this project useful, please consider:
+
+⭐ Starring the repository
+
+🍴 Forking the project
+
+🤝 Connecting with me on GitHub
+
+📢 Sharing feedback and suggestions
+
+---
+
+**"Using Machine Learning to build smarter, safer, and more secure financial systems."**
